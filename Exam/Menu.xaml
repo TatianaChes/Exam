@@ -1,0 +1,35 @@
+﻿<Window x:Class="Exam.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exam"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Главное меню" MinHeight="600" MinWidth="850">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+       
+        <Border Grid.Column ="0" Background="#005fcc"/>
+        <Border Grid.Column ="1" Background="#005fcc"/>
+        <Border Grid.Row="1" Grid.ColumnSpan="1" Background="#2196f3"/>
+        <Label Content="Медицинский осмотр сотрудников предприятия" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="803" FontSize="16"  FontWeight="SemiBold" Grid.RowSpan="2" Foreground="White" Margin="44,0,0,0"/>
+        <Frame x:Name="MyFrame" Grid.Column="1" Grid.Row="1" Background="White"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1" >
+            <Button Content="Главная" HorizontalAlignment="Left"  Width="150" Click="Button_Click_2"/>
+            <Button Content="Уведомления"  Width="150" Click="Button_Click"/>
+            <Button Content="Мед. комиссия"  Width="150" Click="Button_Click_1"/>
+            <Button Content="Создать"  Width="150" Click="Button_Click_4"/>
+            <Button Content="Отчет"  Width="150" Click="Button_Click_3"/>
+            <Button x:Name="exit" Content="Выход" Width="150" Click="exit_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

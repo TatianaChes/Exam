@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище MedViewModelContainer" CdmEntityContainer="MedViewEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MedViewModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Должность">
+      <EntityTypeMapping TypeName="MedViewModel.Должность">
+        <MappingFragment StoreEntitySet="Должность">
+          <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Краткое_наименование" ColumnName="Краткое_наименование" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Мед_карта">
+      <EntityTypeMapping TypeName="MedViewModel.Мед_карта">
+        <MappingFragment StoreEntitySet="Мед_карта">
+          <ScalarProperty Name="Код_мед_карты" ColumnName="Код_мед_карты" />
+          <ScalarProperty Name="Номер" ColumnName="Номер" />
+          <ScalarProperty Name="Дата_заведения" ColumnName="Дата_заведения" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Мед_комиссия">
+      <EntityTypeMapping TypeName="MedViewModel.Мед_комиссия">
+        <MappingFragment StoreEntitySet="Мед_комиссия">
+          <ScalarProperty Name="Код_комисси" ColumnName="Код_комисси" />
+          <ScalarProperty Name="Код_мед_карты" ColumnName="Код_мед_карты" />
+          <ScalarProperty Name="Код_кабинета" ColumnName="Код_кабинета" />
+          <ScalarProperty Name="Код_осмотра" ColumnName="Код_осмотра" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Осмотр">
+      <EntityTypeMapping TypeName="MedViewModel.Осмотр">
+        <MappingFragment StoreEntitySet="Осмотр">
+          <ScalarProperty Name="Код_осмотра" ColumnName="Код_осмотра" />
+          <ScalarProperty Name="Дата_прохождения" ColumnName="Дата_прохождения" />
+          <ScalarProperty Name="Код_результата" ColumnName="Код_результата" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Перечень_кабинетов">
+      <EntityTypeMapping TypeName="MedViewModel.Перечень_кабинетов">
+        <MappingFragment StoreEntitySet="Перечень_кабинетов">
+          <ScalarProperty Name="Код_кабинета" ColumnName="Код_кабинета" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Номер" ColumnName="Номер" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Поликлиника">
+      <EntityTypeMapping TypeName="MedViewModel.Поликлиника">
+        <MappingFragment StoreEntitySet="Поликлиника">
+          <ScalarProperty Name="Код_поликлиники" ColumnName="Код_поликлиники" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Предприятие">
+      <EntityTypeMapping TypeName="MedViewModel.Предприятие">
+        <MappingFragment StoreEntitySet="Предприятие">
+          <ScalarProperty Name="Код_предприятия" ColumnName="Код_предприятия" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Краткое_наименование" ColumnName="Краткое_наименование" />
+          <ScalarProperty Name="Юр_адрес" ColumnName="Юр_адрес" />
+          <ScalarProperty Name="Код_поликлиники" ColumnName="Код_поликлиники" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Результат">
+      <EntityTypeMapping TypeName="MedViewModel.Результат">
+        <MappingFragment StoreEntitySet="Результат">
+          <ScalarProperty Name="Код_результата" ColumnName="Код_результата" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="Допуск" ColumnName="Допуск" />
+          <ScalarProperty Name="Код_врача" ColumnName="Код_врача" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудник_предприятия">
+      <EntityTypeMapping TypeName="MedViewModel.Сотрудник_предприятия">
+        <MappingFragment StoreEntitySet="Сотрудник_предприятия">
+          <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+          <ScalarProperty Name="Табельный_номер" ColumnName="Табельный_номер" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+          <ScalarProperty Name="Домашний_адрес" ColumnName="Домашний_адрес" />
+          <ScalarProperty Name="Код_предприятия" ColumnName="Код_предприятия" />
+          <ScalarProperty Name="Код_мед_карты" ColumnName="Код_мед_карты" />
+          <ScalarProperty Name="Код_трудового_договора" ColumnName="Код_трудового_договора" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники_поликлиники">
+      <EntityTypeMapping TypeName="MedViewModel.Сотрудники_поликлиники">
+        <MappingFragment StoreEntitySet="Сотрудники_поликлиники">
+          <ScalarProperty Name="Код_сотрудника_поликлиники" ColumnName="Код_сотрудника_поликлиники" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+          <ScalarProperty Name="Код_поликлиники" ColumnName="Код_поликлиники" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Трудовой_договор">
+      <EntityTypeMapping TypeName="MedViewModel.Трудовой_договор">
+        <MappingFragment StoreEntitySet="Трудовой_договор">
+          <ScalarProperty Name="Код_трудового_договора" ColumnName="Код_трудового_договора" />
+          <ScalarProperty Name="Дата_начала_работы" ColumnName="Дата_начала_работы" />
+          <ScalarProperty Name="Дата_окончания_работы" ColumnName="Дата_окончания_работы" />
+          <ScalarProperty Name="Ставка" ColumnName="Ставка" />
+          <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Уведомление">
+      <EntityTypeMapping TypeName="MedViewModel.Уведомление">
+        <MappingFragment StoreEntitySet="Уведомление">
+          <ScalarProperty Name="Код_уведомления" ColumnName="Код_уведомления" />
+          <ScalarProperty Name="Дата_уведомления" ColumnName="Дата_уведомления" />
+          <ScalarProperty Name="Код_сотрудника_поликлиники" ColumnName="Код_сотрудника_поликлиники" />
+          <ScalarProperty Name="Код_сотрудника_предприятия" ColumnName="Код_сотрудника_предприятия" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

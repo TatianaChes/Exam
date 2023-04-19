@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee8dac427ddb493bafc2343fc99429f2" Name="Diagram1">
+        <EntityTypeShape EntityType="MedViewModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Должность" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Мед_карта" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Мед_комиссия" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Осмотр" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Перечень_кабинетов" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Поликлиника" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Предприятие" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Результат" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Сотрудник_предприятия" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Сотрудники_поликлиники" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Трудовой_договор" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedViewModel.Уведомление" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="MedViewModel.FK_Сотрудники_поликлиники_Должность" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Трудовой_договор_Должность" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Мед_комиссия_Мед_карта" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Сотрудник_предприятия_Мед_карта" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Мед_комиссия_Осмотр" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Мед_комиссия_Перечень_кабинетов" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Осмотр_Результат" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Предприятие_Поликлиника" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Сотрудники_поликлиники_Поликлиника" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Сотрудник_предприятия_Предприятие" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Результат_Сотрудники_поликлиники" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Сотрудник_предприятия_Трудовой_договор" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Уведомление_Сотрудник_предприятия" ManuallyRouted="false" />
+        <AssociationConnector Association="MedViewModel.FK_Уведомление_Сотрудники_поликлиники" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

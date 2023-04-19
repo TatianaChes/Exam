@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedViewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Должность">
+    <Key>
+      <PropertyRef Name="Код_должности" />
+    </Key>
+    <Property Name="Код_должности" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Краткое_наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Сотрудники_поликлиники" Relationship="Self.FK_Сотрудники_поликлиники_Должность" FromRole="Должность" ToRole="Сотрудники_поликлиники" />
+    <NavigationProperty Name="Трудовой_договор" Relationship="Self.FK_Трудовой_договор_Должность" FromRole="Должность" ToRole="Трудовой_договор" />
+  </EntityType>
+  <EntityType Name="Мед_карта">
+    <Key>
+      <PropertyRef Name="Код_мед_карты" />
+    </Key>
+    <Property Name="Код_мед_карты" Type="Int32" Nullable="false" />
+    <Property Name="Номер" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Дата_заведения" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Мед_комиссия" Relationship="Self.FK_Мед_комиссия_Мед_карта" FromRole="Мед_карта" ToRole="Мед_комиссия" />
+    <NavigationProperty Name="Сотрудник_предприятия" Relationship="Self.FK_Сотрудник_предприятия_Мед_карта" FromRole="Мед_карта" ToRole="Сотрудник_предприятия" />
+  </EntityType>
+  <EntityType Name="Мед_комиссия">
+    <Key>
+      <PropertyRef Name="Код_комисси" />
+    </Key>
+    <Property Name="Код_комисси" Type="Int32" Nullable="false" />
+    <Property Name="Код_мед_карты" Type="Int32" Nullable="false" />
+    <Property Name="Код_кабинета" Type="Int32" Nullable="false" />
+    <Property Name="Код_осмотра" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Мед_карта" Relationship="Self.FK_Мед_комиссия_Мед_карта" FromRole="Мед_комиссия" ToRole="Мед_карта" />
+    <NavigationProperty Name="Осмотр" Relationship="Self.FK_Мед_комиссия_Осмотр" FromRole="Мед_комиссия" ToRole="Осмотр" />
+    <NavigationProperty Name="Перечень_кабинетов" Relationship="Self.FK_Мед_комиссия_Перечень_кабинетов" FromRole="Мед_комиссия" ToRole="Перечень_кабинетов" />
+  </EntityType>
+  <EntityType Name="Осмотр">
+    <Key>
+      <PropertyRef Name="Код_осмотра" />
+    </Key>
+    <Property Name="Код_осмотра" Type="Int32" Nullable="false" />
+    <Property Name="Дата_прохождения" Type="DateTime" Precision="0" />
+    <Property Name="Код_результата" Type="Int32" />
+    <NavigationProperty Name="Мед_комиссия" Relationship="Self.FK_Мед_комиссия_Осмотр" FromRole="Осмотр" ToRole="Мед_комиссия" />
+    <NavigationProperty Name="Результат" Relationship="Self.FK_Осмотр_Результат" FromRole="Осмотр" ToRole="Результат" />
+  </EntityType>
+  <EntityType Name="Перечень_кабинетов">
+    <Key>
+      <PropertyRef Name="Код_кабинета" />
+    </Key>
+    <Property Name="Код_кабинета" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Номер" Type="Int32" />
+    <NavigationProperty Name="Мед_комиссия" Relationship="Self.FK_Мед_комиссия_Перечень_кабинетов" FromRole="Перечень_кабинетов" ToRole="Мед_комиссия" />
+  </EntityType>
+  <EntityType Name="Поликлиника">
+    <Key>
+      <PropertyRef Name="Код_поликлиники" />
+    </Key>
+    <Property Name="Код_поликлиники" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Предприятие" Relationship="Self.FK_Предприятие_Поликлиника" FromRole="Поликлиника" ToRole="Предприятие" />
+    <NavigationProperty Name="Сотрудники_поликлиники" Relationship="Self.FK_Сотрудники_поликлиники_Поликлиника" FromRole="Поликлиника" ToRole="Сотрудники_поликлиники" />
+  </EntityType>
+  <EntityType Name="Предприятие">
+    <Key>
+      <PropertyRef Name="Код_предприятия" />
+    </Key>
+    <Property Name="Код_предприятия" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Краткое_наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Юр_адрес" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Код_поликлиники" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Поликлиника" Relationship="Self.FK_Предприятие_Поликлиника" FromRole="Предприятие" ToRole="Поликлиника" />
+    <NavigationProperty Name="Сотрудник_предприятия" Relationship="Self.FK_Сотрудник_предприятия_Предприятие" FromRole="Предприятие" ToRole="Сотрудник_предприятия" />
+  </EntityType>
+  <EntityType Name="Результат">
+    <Key>
+      <PropertyRef Name="Код_результата" />
+    </Key>
+    <Property Name="Код_результата" Type="Int32" Nullable="false" />
+    <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Допуск" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Код_врача" Type="Int32" />
+    <NavigationProperty Name="Осмотр" Relationship="Self.FK_Осмотр_Результат" FromRole="Результат" ToRole="Осмотр" />
+    <NavigationProperty Name="Сотрудники_поликлиники" Relationship="Self.FK_Результат_Сотрудники_поликлиники" FromRole="Результат" ToRole="Сотрудники_поликлиники" />
+  </EntityType>
+  <EntityType Name="Сотрудник_предприятия">
+    <Key>
+      <PropertyRef Name="Код_сотрудника" />
+    </Key>
+    <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
+    <Property Name="Табельный_номер" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Домашний_адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Код_предприятия" Type="Int32" Nullable="false" />
+    <Property Name="Код_мед_карты" Type="Int32" Nullable="false" />
+    <Property Name="Код_трудового_договора" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Мед_карта" Relationship="Self.FK_Сотрудник_предприятия_Мед_карта" FromRole="Сотрудник_предприятия" ToRole="Мед_карта" />
+    <NavigationProperty Name="Предприятие" Relationship="Self.FK_Сотрудник_предприятия_Предприятие" FromRole="Сотрудник_предприятия" ToRole="Предприятие" />
+    <NavigationProperty Name="Трудовой_договор" Relationship="Self.FK_Сотрудник_предприятия_Трудовой_договор" FromRole="Сотрудник_предприятия" ToRole="Трудовой_договор" />
+    <NavigationProperty Name="Уведомление" Relationship="Self.FK_Уведомление_Сотрудник_предприятия" FromRole="Сотрудник_предприятия" ToRole="Уведомление" />
+  </EntityType>
+  <EntityType Name="Сотрудники_поликлиники">
+    <Key>
+      <PropertyRef Name="Код_сотрудника_поликлиники" />
+    </Key>
+    <Property Name="Код_сотрудника_поликлиники" Type="Int32" Nullable="false" />
+    <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Код_должности" Type="Int32" Nullable="false" />
+    <Property Name="Код_поликлиники" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Должность" Relationship="Self.FK_Сотрудники_поликлиники_Должность" FromRole="Сотрудники_поликлиники" ToRole="Должность" />
+    <NavigationProperty Name="Поликлиника" Relationship="Self.FK_Сотрудники_поликлиники_Поликлиника" FromRole="Сотрудники_поликлиники" ToRole="Поликлиника" />
+    <NavigationProperty Name="Результат" Relationship="Self.FK_Результат_Сотрудники_поликлиники" FromRole="Сотрудники_поликлиники" ToRole="Результат" />
+    <NavigationProperty Name="Уведомление" Relationship="Self.FK_Уведомление_Сотрудники_поликлиники" FromRole="Сотрудники_поликлиники" ToRole="Уведомление" />
+  </EntityType>
+  <EntityType Name="Трудовой_договор">
+    <Key>
+      <PropertyRef Name="Код_трудового_договора" />
+    </Key>
+    <Property Name="Код_трудового_договора" Type="Int32" Nullable="false" />
+    <Property Name="Дата_начала_работы" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Дата_окончания_работы" Type="DateTime" Precision="0" />
+    <Property Name="Ставка" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Код_должности" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Должность" Relationship="Self.FK_Трудовой_договор_Должность" FromRole="Трудовой_договор" ToRole="Должность" />
+    <NavigationProperty Name="Сотрудник_предприятия" Relationship="Self.FK_Сотрудник_предприятия_Трудовой_договор" FromRole="Трудовой_договор" ToRole="Сотрудник_предприятия" />
+  </EntityType>
+  <EntityType Name="Уведомление">
+    <Key>
+      <PropertyRef Name="Код_уведомления" />
+    </Key>
+    <Property Name="Код_уведомления" Type="Int32" Nullable="false" />
+    <Property Name="Дата_уведомления" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Код_сотрудника_поликлиники" Type="Int32" Nullable="false" />
+    <Property Name="Код_сотрудника_предприятия" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Сотрудник_предприятия" Relationship="Self.FK_Уведомление_Сотрудник_предприятия" FromRole="Уведомление" ToRole="Сотрудник_предприятия" />
+    <NavigationProperty Name="Сотрудники_поликлиники" Relationship="Self.FK_Уведомление_Сотрудники_поликлиники" FromRole="Уведомление" ToRole="Сотрудники_поликлиники" />
+  </EntityType>
+  <Association Name="FK_Сотрудники_поликлиники_Должность">
+    <End Role="Должность" Type="Self.Должность" Multiplicity="1" />
+    <End Role="Сотрудники_поликлиники" Type="Self.Сотрудники_поликлиники" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Должность">
+        <PropertyRef Name="Код_должности" />
+      </Principal>
+      <Dependent Role="Сотрудники_поликлиники">
+        <PropertyRef Name="Код_сотрудника_поликлиники" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Трудовой_договор_Должность">
+    <End Role="Должность" Type="Self.Должность" Multiplicity="1" />
+    <End Role="Трудовой_договор" Type="Self.Трудовой_договор" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Должность">
+        <PropertyRef Name="Код_должности" />
+      </Principal>
+      <Dependent Role="Трудовой_договор">
+        <PropertyRef Name="Код_трудового_договора" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Мед_комиссия_Мед_карта">
+    <End Role="Мед_карта" Type="Self.Мед_карта" Multiplicity="1" />
+    <End Role="Мед_комиссия" Type="Self.Мед_комиссия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Мед_карта">
+        <PropertyRef Name="Код_мед_карты" />
+      </Principal>
+      <Dependent Role="Мед_комиссия">
+        <PropertyRef Name="Код_мед_карты" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудник_предприятия_Мед_карта">
+    <End Role="Мед_карта" Type="Self.Мед_карта" Multiplicity="1" />
+    <End Role="Сотрудник_предприятия" Type="Self.Сотрудник_предприятия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Мед_карта">
+        <PropertyRef Name="Код_мед_карты" />
+      </Principal>
+      <Dependent Role="Сотрудник_предприятия">
+        <PropertyRef Name="Код_мед_карты" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Мед_комиссия_Осмотр">
+    <End Role="Осмотр" Type="Self.Осмотр" Multiplicity="1" />
+    <End Role="Мед_комиссия" Type="Self.Мед_комиссия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Осмотр">
+        <PropertyRef Name="Код_осмотра" />
+      </Principal>
+      <Dependent Role="Мед_комиссия">
+        <PropertyRef Name="Код_осмотра" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Мед_комиссия_Перечень_кабинетов">
+    <End Role="Перечень_кабинетов" Type="Self.Перечень_кабинетов" Multiplicity="1" />
+    <End Role="Мед_комиссия" Type="Self.Мед_комиссия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Перечень_кабинетов">
+        <PropertyRef Name="Код_кабинета" />
+      </Principal>
+      <Dependent Role="Мед_комиссия">
+        <PropertyRef Name="Код_кабинета" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Осмотр_Результат">
+    <End Role="Результат" Type="Self.Результат" Multiplicity="0..1" />
+    <End Role="Осмотр" Type="Self.Осмотр" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Результат">
+        <PropertyRef Name="Код_результата" />
+      </Principal>
+      <Dependent Role="Осмотр">
+        <PropertyRef Name="Код_результата" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Предприятие_Поликлиника">
+    <End Role="Поликлиника" Type="Self.Поликлиника" Multiplicity="1" />
+    <End Role="Предприятие" Type="Self.Предприятие" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Поликлиника">
+        <PropertyRef Name="Код_поликлиники" />
+      </Principal>
+      <Dependent Role="Предприятие">
+        <PropertyRef Name="Код_предприятия" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудники_поликлиники_Поликлиника">
+    <End Role="Поликлиника" Type="Self.Поликлиника" Multiplicity="1" />
+    <End Role="Сотрудники_поликлиники" Type="Self.Сотрудники_поликлиники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Поликлиника">
+        <PropertyRef Name="Код_поликлиники" />
+      </Principal>
+      <Dependent Role="Сотрудники_поликлиники">
+        <PropertyRef Name="Код_поликлиники" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудник_предприятия_Предприятие">
+    <End Role="Предприятие" Type="Self.Предприятие" Multiplicity="1" />
+    <End Role="Сотрудник_предприятия" Type="Self.Сотрудник_предприятия" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Предприятие">
+        <PropertyRef Name="Код_предприятия" />
+      </Principal>
+      <Dependent Role="Сотрудник_предприятия">
+        <PropertyRef Name="Код_предприятия" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Результат_Сотрудники_поликлиники">
+    <End Role="Сотрудники_поликлиники" Type="Self.Сотрудники_поликлиники" Multiplicity="0..1" />
+    <End Role="Результат" Type="Self.Результат" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники_поликлиники">
+        <PropertyRef Name="Код_сотрудника_поликлиники" />
+      </Principal>
+      <Dependent Role="Результат">
+        <PropertyRef Name="Код_врача" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудник_предприятия_Трудовой_договор">
+    <End Role="Трудовой_договор" Type="Self.Трудовой_договор" Multiplicity="1" />
+    <End Role="Сотрудник_предприятия" Type="Self.Сотрудник_предприятия" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Трудовой_договор">
+        <PropertyRef Name="Код_трудового_договора" />
+      </Principal>
+      <Dependent Role="Сотрудник_предприятия">
+        <PropertyRef Name="Код_сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Уведомление_Сотрудник_предприятия">
+    <End Role="Сотрудник_предприятия" Type="Self.Сотрудник_предприятия" Multiplicity="1" />
+    <End Role="Уведомление" Type="Self.Уведомление" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудник_предприятия">
+        <PropertyRef Name="Код_сотрудника" />
+      </Principal>
+      <Dependent Role="Уведомление">
+        <PropertyRef Name="Код_сотрудника_предприятия" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Уведомление_Сотрудники_поликлиники">
+    <End Role="Сотрудники_поликлиники" Type="Self.Сотрудники_поликлиники" Multiplicity="1" />
+    <End Role="Уведомление" Type="Self.Уведомление" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники_поликлиники">
+        <PropertyRef Name="Код_сотрудника_поликлиники" />
+      </Principal>
+      <Dependent Role="Уведомление">
+        <PropertyRef Name="Код_сотрудника_поликлиники" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MedViewEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Должность" EntityType="Self.Должность" />
+    <EntitySet Name="Мед_карта" EntityType="Self.Мед_карта" />
+    <EntitySet Name="Мед_комиссия" EntityType="Self.Мед_комиссия" />
+    <EntitySet Name="Осмотр" EntityType="Self.Осмотр" />
+    <EntitySet Name="Перечень_кабинетов" EntityType="Self.Перечень_кабинетов" />
+    <EntitySet Name="Поликлиника" EntityType="Self.Поликлиника" />
+    <EntitySet Name="Предприятие" EntityType="Self.Предприятие" />
+    <EntitySet Name="Результат" EntityType="Self.Результат" />
+    <EntitySet Name="Сотрудник_предприятия" EntityType="Self.Сотрудник_предприятия" />
+    <EntitySet Name="Сотрудники_поликлиники" EntityType="Self.Сотрудники_поликлиники" />
+    <EntitySet Name="Трудовой_договор" EntityType="Self.Трудовой_договор" />
+    <EntitySet Name="Уведомление" EntityType="Self.Уведомление" />
+    <AssociationSet Name="FK_Сотрудники_поликлиники_Должность" Association="Self.FK_Сотрудники_поликлиники_Должность">
+      <End Role="Должность" EntitySet="Должность" />
+      <End Role="Сотрудники_поликлиники" EntitySet="Сотрудники_поликлиники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Трудовой_договор_Должность" Association="Self.FK_Трудовой_договор_Должность">
+      <End Role="Должность" EntitySet="Должность" />
+      <End Role="Трудовой_договор" EntitySet="Трудовой_договор" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Мед_комиссия_Мед_карта" Association="Self.FK_Мед_комиссия_Мед_карта">
+      <End Role="Мед_карта" EntitySet="Мед_карта" />
+      <End Role="Мед_комиссия" EntitySet="Мед_комиссия" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудник_предприятия_Мед_карта" Association="Self.FK_Сотрудник_предприятия_Мед_карта">
+      <End Role="Мед_карта" EntitySet="Мед_карта" />
+      <End Role="Сотрудник_предприятия" EntitySet="Сотрудник_предприятия" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Мед_комиссия_Осмотр" Association="Self.FK_Мед_комиссия_Осмотр">
+      <End Role="Осмотр" EntitySet="Осмотр" />
+      <End Role="Мед_комиссия" EntitySet="Мед_комиссия" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Мед_комиссия_Перечень_кабинетов" Association="Self.FK_Мед_комиссия_Перечень_кабинетов">
+      <End Role="Перечень_кабинетов" EntitySet="Перечень_кабинетов" />
+      <End Role="Мед_комиссия" EntitySet="Мед_комиссия" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Осмотр_Результат" Association="Self.FK_Осмотр_Результат">
+      <End Role="Результат" EntitySet="Результат" />
+      <End Role="Осмотр" EntitySet="Осмотр" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Предприятие_Поликлиника" Association="Self.FK_Предприятие_Поликлиника">
+      <End Role="Поликлиника" EntitySet="Поликлиника" />
+      <End Role="Предприятие" EntitySet="Предприятие" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудники_поликлиники_Поликлиника" Association="Self.FK_Сотрудники_поликлиники_Поликлиника">
+      <End Role="Поликлиника" EntitySet="Поликлиника" />
+      <End Role="Сотрудники_поликлиники" EntitySet="Сотрудники_поликлиники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудник_предприятия_Предприятие" Association="Self.FK_Сотрудник_предприятия_Предприятие">
+      <End Role="Предприятие" EntitySet="Предприятие" />
+      <End Role="Сотрудник_предприятия" EntitySet="Сотрудник_предприятия" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Результат_Сотрудники_поликлиники" Association="Self.FK_Результат_Сотрудники_поликлиники">
+      <End Role="Сотрудники_поликлиники" EntitySet="Сотрудники_поликлиники" />
+      <End Role="Результат" EntitySet="Результат" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудник_предприятия_Трудовой_договор" Association="Self.FK_Сотрудник_предприятия_Трудовой_договор">
+      <End Role="Трудовой_договор" EntitySet="Трудовой_договор" />
+      <End Role="Сотрудник_предприятия" EntitySet="Сотрудник_предприятия" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Уведомление_Сотрудник_предприятия" Association="Self.FK_Уведомление_Сотрудник_предприятия">
+      <End Role="Сотрудник_предприятия" EntitySet="Сотрудник_предприятия" />
+      <End Role="Уведомление" EntitySet="Уведомление" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Уведомление_Сотрудники_поликлиники" Association="Self.FK_Уведомление_Сотрудники_поликлиники">
+      <End Role="Сотрудники_поликлиники" EntitySet="Сотрудники_поликлиники" />
+      <End Role="Уведомление" EntitySet="Уведомление" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
